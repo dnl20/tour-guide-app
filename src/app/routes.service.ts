@@ -18,6 +18,14 @@ export class RoutesService {
 
   constructor(private http: HttpClient, @Inject(API_ENDPOINT) private apiEndpoint) { }
 
+  // searchForName(terms$: Observable<string>, debounceMs = 400): Observable<Array<Route>> {
+  //   return terms$.pipe(
+  //     debounceTime(debounceMs),       // Obersvable<string>
+  //     distinctUntilChanged(),         // Obersvable<string>
+  //     switchMap(term => this.rawSearch(term)) // Observable<Array<Route>>
+  //   );
+  // }
+
   search(terms$: Observable<string>, debounceMs = 400): Observable<Array<Route>> {
     return terms$.pipe(
       debounceTime(debounceMs),       // Obersvable<string>
@@ -28,6 +36,24 @@ export class RoutesService {
 
   rawSearch(term: string) {
     return this.http.get<RoutesResponse>(`${this.apiEndpoint}/search?text=${term}`)
+      .pipe(map(data => data.items));
+  }
+
+  searchAll(search$: Observable<Array<string>>, name: string, location: string, perimeter: string, recommendation: string,
+    type: string, debounceMs = 400): Observable<Array<Route>> {
+    return search$.pipe(
+      debounceTime(debounceMs),       // Obersvable<string>
+      distinctUntilChanged(),         // Obersvable<string>
+      switchMap(term => this.rawSearchAll(term[0], term[1], term[2], term[3], term[4])) // Observable<Array<Route>>
+    ); // Observable<Array<Route>>
+
+  }
+
+
+
+  rawSearchAll(name: string, location: string, perimeter: string, recommendation: string, type: string) {
+    return this.http.get<RoutesResponse>(`${this.apiEndpoint}/search?text=${name}&location=${location}&perimeter=${perimeter}
+    &recommendation=${recommendation}&type=${type}`)
       .pipe(map(data => data.items));
   }
 

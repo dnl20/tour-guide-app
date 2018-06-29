@@ -28,9 +28,19 @@ if (unorderedResponse) {
 
 let maxId = db.length;
 
-const multipleResponse = (items) => { return { items: items } };
-const singleResponse = (item) => { return { item: item } };
-const getNextId = () => { return maxId++ };
+const multipleResponse = (items) => {
+  return {
+    items: items
+  }
+};
+const singleResponse = (item) => {
+  return {
+    item: item
+  }
+};
+const getNextId = () => {
+  return maxId++
+};
 const isContact = (contact) => contact.name !== undefined;
 const emailIsAvailable = (email) => {
   if (email === '') {
@@ -45,16 +55,16 @@ const emailIsAvailable = (email) => {
 // ******************************************************************
 
 let app = express();
-    app.use(cors());
-    app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.json());
 
 
 /**
  * Redirect 'null' path to get all contacts
  */
-app.get('/', (req, res) =>{
+app.get('/', (req, res) => {
   let file = require.resolve(PATH_API_HTML);
-  res.send( fs.readFileSync(file).toString() )
+  res.send(fs.readFileSync(file).toString())
 });
 
 // ******************************************************************
@@ -74,15 +84,26 @@ let delayedRequest = false;
  * searchContacts(<query>) RESTful endpoint
  */
 app.get('/api/search', function (req, res) {
-  let text = req.query.text;
-  let matches = db.filter(contact => contact.name
-    .toLowerCase().indexOf(text.toLowerCase()) > -1);
+  let text = (req.query.text === null) ? '' : req.query.text;
+  let location = (req.query.location === null) ? '' : req.query.location;
+  let perimeter = (req.query.perimeter === null) ? '' : req.query.perimeter;
+  let recommendation = (req.query.recommendation === null) ? '' : req.query.recommendation;
+  let type = (req.query.type === null) ? '' : req.query.type;
+
+  let matches = db.filter(route => {
+    console.log();
+    (route.name.toLowerCase().indexOf(text.toLowerCase()) > -1 &&
+      route.location.toLowerCase().indexOf(location.toLowerCase()) > -1 &&
+      route.perimeter.toLowerCase().indexOf(perimeter.toLowerCase()) > -1 &&
+      route.recommendation.toLowerCase().indexOf(recommendation.toLowerCase()) > -1 &&
+      route.type.toLowerCase().indexOf(type.toLowerCase()) > -1)
+  });
 
   if (unorderedResponse && delayedRequest) {
     console.log(`Serving delayed for: ${text}`);
     setTimeout(() => res.json(multipleResponse(matches)), 2000)
   } else {
-    console.log(`Serving instantly for: ${text}`);
+    console.log(`Serving instantly for: ${text} ${location} ${perimeter} ${recommendation}`);
     res.json(multipleResponse(matches));
   }
   delayedRequest = !delayedRequest;
@@ -93,21 +114,24 @@ app.get('/api/search', function (req, res) {
  */
 app.get('/api/routes/:id', function (req, res) {
   let contact = db.find(contact => contact.id == req.params.id);
-  contact ? res.json(singleResponse(contact)) : res.status(404).json({ error: 'contact not found' });
+  contact ? res.json(singleResponse(contact)) : res.status(404).json({
+    error: 'contact not found'
+  });
 });
 
 /**
  * updateContact(<contact>) RESTful endpoint
  */
-app.post('/api/routes', function (req, res) {
+app.post('/api/route', function (req, res) {
   if (isContact(req.body)) {
     req.body.id = getNextId();
     req.body.image = '/assets/images/placeholder.png';
     db.push(req.body);
     res.json(singleResponse(req.body));
-  }
-  else {
-    res.status(404).json({ error: 'invalid structure' });
+  } else {
+    res.status(404).json({
+      error: 'invalid structure'
+    });
   }
 });
 
@@ -121,7 +145,9 @@ app.put('/api/routes/:id', function (req, res) {
     Object.assign(contact, req.body);
     res.json(singleResponse(contact));
   } else {
-    res.status(404).json({ error: 'contact not found' });
+    res.status(404).json({
+      error: 'contact not found'
+    });
   }
 });
 
@@ -135,7 +161,9 @@ app.delete('/api/routes/:id', function (req, res) {
     db.splice(index, 1);
     res.json(singleResponse(contact));
   } else {
-    res.status(404).json({ error: 'contact not found' });
+    res.status(404).json({
+      error: 'contact not found'
+    });
   }
 });
 
@@ -144,12 +172,14 @@ app.delete('/api/routes/:id', function (req, res) {
  */
 app.get('/api/check-email', function (req, res) {
   if (emailIsAvailable(req.query.email)) {
-    res.json({ msg: 'AVAILABLE' });
+    res.json({
+      msg: 'AVAILABLE'
+    });
   } else {
-    res.json({ error: 'NOT_AVAILABLE' });
+    res.json({
+      error: 'NOT_AVAILABLE'
+    });
   }
 });
 
 app.listen(4201, () => console.log('REST API running on port 4201'));
-
-

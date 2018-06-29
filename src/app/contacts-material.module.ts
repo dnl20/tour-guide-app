@@ -15,9 +15,10 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatProgressSpinnerModule,
+  MatExpansionModule,
+  MatGridListModule,
   MatTooltipModule,
   MatSnackBarModule,
-  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -36,6 +37,8 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatProgressSpinnerModule,
+    MatExpansionModule,
+    MatGridListModule,
     MatTooltipModule,
     MatSnackBarModule,
     MatExpansionModule
