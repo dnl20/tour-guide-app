@@ -21,15 +21,9 @@ export class StarRatingComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    // for (let index = 0; index < this.starCount; index++) {
-    //   this.ratingArr.push(index);
-    // }
-  }
+  ngOnInit() {}
+
   onClick(rating: number) {
-    this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
-      duration: this.snackBarDuration
-    });
     this.ratingUpdated.emit(rating);
     return false;
   }
@@ -45,7 +39,7 @@ export class StarRatingComponent implements OnInit {
 }
 
 export enum StarRatingColor {
-  primary = "primary",
-  accent = "accent",
-  warn = "warn"
+  primary = 'primary',
+  accent = 'accent',
+  warn = 'warn'
 }
