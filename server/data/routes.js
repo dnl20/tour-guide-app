@@ -6,9 +6,9 @@ module.exports = [
         place: 'Oldenburg',
         distance: 4.4,
         coordinates: [[1,2],[3,4]],
-        type: ['sport'],
+        type: 'sport',
         difficulty: 'easy',
-        rating: [2],
+        rating: 2,
         image: '/assets/images/0.jpg',
     },
     {
@@ -18,9 +18,9 @@ module.exports = [
         place: 'Leszowate',
         distance: 3,
         coordinates: [[1,2],[3,4]],
-        type: ['hike'],
+        type: 'hike',
         difficulty: 'medium',
-        rating:[3],
+        rating:3,
         image: '/assets/images/0.jpg',
     },
     {
@@ -30,9 +30,9 @@ module.exports = [
         place: 'Las Palmas',
         distance: 1.2,
         coordinates: [[1,2],[3,4]],
-        type: ['climbing'],
+        type: 'climbing',
         difficulty: 'very hard',
-        rating: [5],
+        rating: 5,
         image: '/assets/images/0.jpg',
     }
 ];

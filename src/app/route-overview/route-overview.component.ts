@@ -17,12 +17,14 @@ export class RouteOverviewComponent implements OnInit {
   termsLocation$ = new Subject<string>();
   termsPerimeter$ = new Subject<string>();
   termsType$ = new Subject<string>();
+  termsRating$ = new Subject<string>();
   termsReccomendations$ = new Subject<string>();
 
   searchingTermsName = '';
   searchingTermsLocation = '';
   searchingTermsPerimeter = '';
   searchingTermsType = '';
+  searchingTermsRating = '';
   searchingTermsRecommendation = '';
 
 
@@ -37,11 +39,11 @@ export class RouteOverviewComponent implements OnInit {
     this.termsLocation$.subscribe(location => this.searchingTermsLocation = location);
     this.termsPerimeter$.subscribe(perimeter => this.searchingTermsPerimeter = perimeter);
     this.termsReccomendations$.subscribe(recommendation => this.searchingTermsRecommendation = recommendation);
+    this.termsRating$.subscribe(rating => this.searchingTermsType = rating);
     this.termsType$.subscribe(type => this.searchingTermsType = type);
 
 
-    this.routes$ = this.routeService.searchAll(this.searching$, this.searchingTermsName, this.searchingTermsLocation,
-      this.searchingTermsPerimeter, this.searchingTermsRecommendation, this.searchingTermsRecommendation, 400).pipe(
+    this.routes$ = this.routeService.searchAll(this.searching$, 400).pipe(
         merge(this.routeService.getRoutes()));
 
     this.routes$.subscribe(routes => console.log('NEW ROUTES ', routes));
@@ -50,10 +52,10 @@ export class RouteOverviewComponent implements OnInit {
   }
 
   fillFilter() {
-    const filterArray = [this.searchingTermsName, this.searchingTermsLocation, 
-      this.searchingTermsPerimeter, this.searchingTermsRecommendation, this.searchingTermsType];
+    const filterArray = [this.searchingTermsName, this.searchingTermsLocation,
+    this.searchingTermsPerimeter, this.searchingTermsRecommendation, this.searchingTermsRating, this.searchingTermsType];
 
-      this.searching$.next(filterArray);
+    this.searching$.next(filterArray);
 
   }
 }
