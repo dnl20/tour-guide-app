@@ -76,7 +76,7 @@ import { AgmDirectionModule } from 'agm-direction'
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAa74U6p6t1Zq2N8Ta4wMv5HIO9ZW63_9g'
+      apiKey: 'AIzaSyBZ5PRGq7-bDi2sBtA6ATkdylAV2OlU2Bs'
     }),
     AgmDirectionModule
   ],

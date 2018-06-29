@@ -8,16 +8,38 @@
         <mat-form-field>
           <input matInput placeholder="Name of the Route" formControlName="name">
         </mat-form-field>
+      </div>
+      <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
         <mat-form-field>
-          <input matInput placeholder="Country" formControlName="country">
+          <mat-select placeholder="Country of Depature" (selectionChange)="countryDepChanged($event)" #countryDep formControlName="country_dep">
+            <mat-option *ngFor="let country_dep of countrys" [value]="country_dep">
+              {{country_dep}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-select placeholder="Town of Depature" formControlName="place_dep" [disabled]="countryDep.empty">
+              <mat-option *ngFor="let place_dep of place_deps" [value]="place_dep">
+                {{place_dep}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Town of Depature" formControlName="place_dep">
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Town" formControlName="place">
+          <input matInput placeholder="Country of Arrival" formControlName="country_arr">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Town of Arrival" formControlName="place_arr">
         </mat-form-field>
       </div>
       <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
         <mat-form-field>
-            <input matInput placeholder="Distance" formControlName="distance">
+          <input matInput placeholder="Distance" formControlName="distance">
         </mat-form-field>
         <mat-form-field>
 
@@ -29,13 +51,13 @@
         <div class="star-rating">
           <span class="star-rating-title mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored">Level: </span>
           <mat-star-rating [ratingElements]="ratingElements" [rating]="rating" [ratingtype]="ratingtype" [starCount]="starCount" [color]="starColor"
-            (ratingUpdated)="onRatingChanged($event)" ></mat-star-rating>
+            (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
         </div>
       </div>
       <mat-card-actions fxLayout fxLayoutAlign="center center">
-          <button mat-button type="submit" [disabled]="!form.valid" >Save</button>
-          <a mat-button title="Cancel creating new contact" (click)="cancel(contact)" routerLink="/">Cancel</a>
-        </mat-card-actions>
+        <button mat-button type="submit">Save</button>
+        <a mat-button title="Cancel creating new contact" (click)="cancel(contact)" routerLink="/">Cancel</a>
+      </mat-card-actions>
     </mat-card-content>
   </mat-card>
 </form>
