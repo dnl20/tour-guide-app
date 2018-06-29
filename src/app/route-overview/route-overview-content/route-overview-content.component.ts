@@ -15,7 +15,7 @@ export class RouteOverviewContentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.routesArray$.subscribe(routes => { console.log(routes); this.routes = routes; });
+    this.routesArray$.subscribe(routes => {  this.routes = routes; });
   }
 
   trackByRouteId(index, contact) {

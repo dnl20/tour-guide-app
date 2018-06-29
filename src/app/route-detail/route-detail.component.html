@@ -1,0 +1,29 @@
+<div class="trm-route-detail">
+    <mat-card>
+      <mat-card-title-group class="fullBleed">
+        <!-- <img mat-card-md-image [src]="route.image || ''"> -->
+        <mat-card-title>{{route.name}}</mat-card-title>
+      </mat-card-title-group>
+      <mat-card-content>
+        <dl>
+     
+          <!-- <dt>Phone:</dt>
+          <dd>{{contact.phone || '-'}}</dd>
+          <dt>Website:</dt>
+          <dd>{{contact.website || '-'}}</dd>
+          <dt>Birthday:</dt>
+          <dd>{{contact.birthday || '-'}}</dd>
+          <dt>Street:</dt>
+          <dd>{{contact.address.street || '-'}}</dd>
+          <dt>Zip:</dt>
+          <dd>{{contact.address.zip || '-'}}</dd>
+          <dt>City:</dt>
+          <dd>{{contact.address.city || '-'}}</dd> -->
+        </dl>
+      </mat-card-content>
+      <mat-card-actions fxLayout fxLayoutAlign="center center">
+          <a mat-button (click)="back.emit()" title="Back">Back</a>
+        <a mat-button (click)="edit.emit()" title="Edit {{route.name}}">Edit</a>
+      </mat-card-actions>
+    </mat-card>
+  </div>

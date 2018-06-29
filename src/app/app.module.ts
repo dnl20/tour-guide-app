@@ -26,7 +26,6 @@ import { EmailValidatorDirective } from './directives/email-validator.directive'
 import { EmailAvailabilityValidatorDirective } from './directives/email-availability-validator.directive';
 import { AddressInputComponent } from './contacts-creator/address-input/address-input.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
-import { ContactResolver } from './shared/contacts.resolver';
 import { RouteDashboardComponent } from './route-dashboard/route-dashboard.component';
 import { RouteOverviewComponent } from './route-overview/route-overview.component';
 import { RouteSearchComponent } from './route-overview/route-search/route-search.component';
@@ -36,6 +35,8 @@ import { RouteCreatorInputcardComponent } from './route-creator/route-creator-in
 import { RouteCreatorMapComponent } from './route-creator/route-creator-map/route-creator-map.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RoutesService } from './routes.service';
+import { RouteDetailComponent } from './route-detail/route-detail.component';
+import { RResolver } from './shared/routes.resolver';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { RoutesService } from './routes.service';
     RouteCreatorComponent,
     RouteCreatorInputcardComponent,
     RouteCreatorMapComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    RouteDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,7 @@ import { RoutesService } from './routes.service';
       provide: 'ConfirmNavigationGuard',
       useValue: doConfirm
     },
-    ContactResolver
+    RResolver
   ],
   bootstrap: [ContactsAppComponent]
 })
