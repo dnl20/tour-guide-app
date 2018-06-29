@@ -39,21 +39,20 @@ export class RoutesService {
       .pipe(map(data => data.items));
   }
 
-  searchAll(search$: Observable<Array<string>>, name: string, location: string, perimeter: string, recommendation: string,
-    type: string, debounceMs = 400): Observable<Array<Route>> {
+  searchAll(search$: Observable<Array<string>>, debounceMs = 400): Observable<Array<Route>> {
     return search$.pipe(
       debounceTime(debounceMs),       // Obersvable<string>
       distinctUntilChanged(),         // Obersvable<string>
-      switchMap(term => this.rawSearchAll(term[0], term[1], term[2], term[3], term[4])) // Observable<Array<Route>>
+      switchMap(term => this.rawSearchAll(term[0], term[1], term[2], term[3], term[4], term[5])) // Observable<Array<Route>>
     ); // Observable<Array<Route>>
 
   }
 
 
 
-  rawSearchAll(name: string, location: string, perimeter: string, recommendation: string, type: string) {
-    return this.http.get<RoutesResponse>(`${this.apiEndpoint}/search?text=${name}&location=${location}&perimeter=${perimeter}
-    &recommendation=${recommendation}&type=${type}`)
+  rawSearchAll(name: string, location: string, perimeter: string, recommendation: string, type: string, rating: string) {
+    return this.http.get<RoutesResponse>(`${this.apiEndpoint}/search?text=${name}&country=${location}&perimeter=${perimeter}
+    &recommendation=${recommendation}&rating=${rating}&type=${type}`)
       .pipe(map(data => data.items));
   }
 

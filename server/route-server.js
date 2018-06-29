@@ -84,26 +84,30 @@ let delayedRequest = false;
  * searchContacts(<query>) RESTful endpoint
  */
 app.get('/api/search', function (req, res) {
-  let text = (req.query.text === null) ? '' : req.query.text;
-  let location = (req.query.location === null) ? '' : req.query.location;
+  let text = req.query.text;
+  let country = req.query.country;
   let perimeter = (req.query.perimeter === null) ? '' : req.query.perimeter;
   let recommendation = (req.query.recommendation === null) ? '' : req.query.recommendation;
   let type = (req.query.type === null) ? '' : req.query.type;
+  let rating = (req.query.rating === null) ? '' : req.query.rating;
 
+  // TODO: Calculate perimeter.
   let matches = db.filter(route => {
-    console.log();
-    (route.name.toLowerCase().indexOf(text.toLowerCase()) > -1 &&
-      route.location.toLowerCase().indexOf(location.toLowerCase()) > -1 &&
-      route.perimeter.toLowerCase().indexOf(perimeter.toLowerCase()) > -1 &&
-      route.recommendation.toLowerCase().indexOf(recommendation.toLowerCase()) > -1 &&
-      route.type.toLowerCase().indexOf(type.toLowerCase()) > -1)
+    console.log(req.query);
+    return ((route.name.toLowerCase().indexOf(text.toLowerCase()) > -1) &&
+      (route.country.toLowerCase().indexOf(country.toLowerCase()) > -1) &&
+      (route.type.toLowerCase().indexOf(type.toLowerCase()) > -1) &&
+      (route.rating >= rating)
+      // route.rating.toLowerCase().indexOf(recommendation.toLowerCase()) > -1 &&
+      // route.type.toLowerCase().indexOf(type.toLowerCase()) > -1
+    )
   });
 
   if (unorderedResponse && delayedRequest) {
     console.log(`Serving delayed for: ${text}`);
     setTimeout(() => res.json(multipleResponse(matches)), 2000)
   } else {
-    console.log(`Serving instantly for: ${text} ${location} ${perimeter} ${recommendation}`);
+    console.log(`Serving instantly for: ${text} ${country} ${perimeter} ${recommendation}`);
     res.json(multipleResponse(matches));
   }
   delayedRequest = !delayedRequest;
