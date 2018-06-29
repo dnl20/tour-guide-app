@@ -14,7 +14,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "vote-server": "node server/voting-server.js",
-    "rest-api": "node server/contacts-server.js"
+    "rest-api": "node server/route-server.js"
   },
   "private": true,
   "dependencies": {

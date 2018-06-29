@@ -27,6 +27,10 @@ import { EmailAvailabilityValidatorDirective } from './directives/email-availabi
 import { AddressInputComponent } from './contacts-creator/address-input/address-input.component';
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { ContactResolver } from './shared/contacts.resolver';
+import { RouteDashboardComponent } from './route-dashboard/route-dashboard.component';
+import { RouteOverviewComponent } from './route-overview/route-overview.component';
+import { RouteSearchComponent } from './route-overview/route-search/route-search.component';
+import { RouteOverviewContentComponent } from './route-overview/route-overview-content/route-overview-content.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,11 @@ import { ContactResolver } from './shared/contacts.resolver';
     EmailValidatorDirective,
     EmailAvailabilityValidatorDirective,
     AddressInputComponent,
-    ContactsDashboardComponent
+    ContactsDashboardComponent,
+    RouteDashboardComponent,
+    RouteOverviewComponent,
+    RouteSearchComponent,
+    RouteOverviewContentComponent
   ],
   imports: [
     BrowserModule,

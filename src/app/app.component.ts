@@ -40,8 +40,8 @@ export class ContactsAppComponent implements OnInit {
     const showLoading$ = this.router.events.pipe(filter(event => event instanceof NavigationStart), mapTo(true));
     const hideSpinner$ = this.router.events.pipe(filter(event => event instanceof NavigationEnd), mapTo(false));
 
-    this.spinnerVisibility$ = merge(showLoading$, hideSpinner$);
-    this.spinnerVisibility$.subscribe(val => this.spinner = val);
+    // this.spinnerVisibility$ = merge(showLoading$, hideSpinner$);
+    // this.spinnerVisibility$.subscribe(val => this.spinner = val);
 
   }
 }

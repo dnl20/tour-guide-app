@@ -1,0 +1,94 @@
+<style>
+  h2, h3 {
+    padding-left: 25px;
+  }
+
+  h3 {
+    font-size: 0.9em;
+    color: darkgray;
+    margin-top: -10px;
+    padding-bottom: 10px;
+  }
+
+  li {
+    line-height: 30px;
+    vertical-align: middle;
+  }
+
+  .name {
+    min-width: 200px;
+    display: inline-block;
+  }
+
+  .url {
+    padding-left: 25px;
+    width: 250px;
+    text-align: left;
+    background-color: #fff7df;
+    display: inline-block;
+  }
+
+  .action {
+    width: 50px;
+    padding-left: 20px;
+    color: lightgray;
+  }
+</style>
+
+<h2>Contacts Server</h2>
+<h3>REST API documentation for the Contacts HTTP server (used in thoughtram AMC).</h3>
+<ul>
+  <li>
+    <span class="name">
+      <a href="http://localhost:4201/api/routes">
+        getRoutes()
+      </a>
+    </span>
+    <span class="url">/api/routes </span>
+    <span class="action"> GET </span></li>
+  <li>
+    <span class="name">
+      <a href="http://localhost:4201/api/routes/0">
+        getRoute(id)
+      </a>
+    </span>
+    <span
+        class="url">/api/routes/:id </span>
+    <span class="action"> GET </span></li>
+  <li>
+    <span class="name">
+      <a href="http://localhost:4201/api/search?text=ch">
+        searchRoutes(query)
+      </a>
+    </span>
+    <span
+        class="url">/api/search?text==&lt;xxx&gt;       </span>
+    <span class="action"> GET </span></li>
+  <li style="margin-bottom: 20px;">
+    <span class="name">
+      <a href="http://localhost:4201/api/check-email?email=christoph@thoughtram.io">
+        checkEmail(email)
+      </a>
+    </span>
+    <span class="url"> /api/check-email?email=&lt;xxx&gt; </span>
+    <span class="action"> GET </span>
+  </li>
+  <li>
+    <span class="name"> createRoute(route) </span>
+    <span
+        class="url"> /api/routes/:id </span>
+    <span class="action"> PUT </span>
+  </li>
+  <li style="margin-bottom: 20px;">
+    <span class="name"> updateRoute(contact) </span>
+    <span
+        class="url"> /api/route     </span>
+    <span class="action"> PUT </span>
+  </li>
+  <li><span class="name"> deleteRoute(id)      </span>
+    <span
+        class="url"> /api/routes/:id </span>
+    <span class="action"> DELETE </span>
+  </li>
+</ul>  
+
