@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'trm-route-search',
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./route-search.component.css']
 })
 export class RouteSearchComponent implements OnInit {
+  terms$ = new Subject<string>();
 
   constructor() { }
 

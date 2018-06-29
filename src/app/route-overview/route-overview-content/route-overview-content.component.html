@@ -1,11 +1,28 @@
 <mat-card>
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    1
+  <!-- <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" *ngFor="let route of routes">
+      <mat-card>Route {{ route.name }}</mat-card>
+   
   </div>
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    2
-  </div>
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-    3
-  </div>
-</mat-card>
+ -->
+
+
+
+<mat-list>
+    <a mat-list-item
+      [routerLink]="['/contact', route.id]"
+      *ngFor="let route of routesArray$ | async; trackBy:trackByRouteId"
+      title="View {{route.name}} details">
+  
+      <img mat-list-avatar [src]="route.image" alt="Picture of {{route.name}}" class="rectangle">
+      <h3 mat-line>{{route.name}}</h3>
+      <p matLine>
+          <span> {{route.country}} </span>
+          <span class="demo-2"> -- {{route.place}} </span>
+          <span class="demo-2"> -- {{route.type}} </span>
+        </p>
+    </a>
+  </mat-list>
+  <a routerLink="/contact/new" mat-fab title="Add a new contact" class="trm-floating-button">
+    <mat-icon class="md-24">add</mat-icon>
+  </a>
+  </mat-card>

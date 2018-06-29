@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Route } from '../../models/route';
 
 @Component({
   selector: 'trm-route-overview-content',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RouteOverviewContentComponent implements OnInit {
 
+  @Input() routesArray$: Observable<Array<Route>>;
+
+  routes: Array<Route>;
   constructor() { }
 
   ngOnInit() {
+    this.routesArray$.subscribe(routes => { console.log(routes); this.routes = routes; });
   }
 
+  trackByRouteId(index, contact) {
+    return contact.id;
+  }
 }

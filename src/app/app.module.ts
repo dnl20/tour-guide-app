@@ -35,6 +35,7 @@ import { RouteCreatorComponent } from './route-creator/route-creator.component';
 import { RouteCreatorInputcardComponent } from './route-creator/route-creator-inputcard/route-creator-inputcard.component';
 import { RouteCreatorMapComponent } from './route-creator/route-creator-map/route-creator-map.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { RoutesService } from './routes.service';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
   ],
   providers: [
     ContactsService,
+    RoutesService,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
     EventBusServiceService,
     Title,
