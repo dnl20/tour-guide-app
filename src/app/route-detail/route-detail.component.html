@@ -6,10 +6,14 @@
       </mat-card-title-group>
       <mat-card-content>
         <dl>
-     
-          <!-- <dt>Phone:</dt>
-          <dd>{{contact.phone || '-'}}</dd>
-          <dt>Website:</dt>
+
+          <dt>Country:</dt>
+          <dd>{{ route.country || '-'}}</dd>
+          <dt>Place:</dt>
+          <dd>{{ route.place || '-'}}</dd>
+          <dt>Type:</dt>
+          <dd>{{ route.type || '-'}}</dd>
+          <!-- <dt>Website:</dt>
           <dd>{{contact.website || '-'}}</dd>
           <dt>Birthday:</dt>
           <dd>{{contact.birthday || '-'}}</dd>
@@ -19,7 +23,7 @@
           <dd>{{contact.address.zip || '-'}}</dd>
           <dt>City:</dt>
           <dd>{{contact.address.city || '-'}}</dd> -->
-        </dl>
+        </dl> 
       </mat-card-content>
       <mat-card-actions fxLayout fxLayoutAlign="center center">
           <a mat-button (click)="back.emit()" title="Back">Back</a>

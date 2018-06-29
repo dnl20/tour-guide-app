@@ -24,4 +24,8 @@ export class ContactsAppComponent implements OnInit {
         this.titleService.setTitle(title);
       });
   }
+
+  clickLogo() {
+    this.router.navigate(['/about']);
+  }
 }

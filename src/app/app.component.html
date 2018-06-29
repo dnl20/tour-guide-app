@@ -1,8 +1,11 @@
-<mat-toolbar color="primary" fxLayout fxLayoutAlign="space-between center">
+<mat-toolbar color="primary" fxLayout fxLayoutAlign="space-between right">
   <button mat-icon-button (click)="navbar.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <h1>OutGoing</h1>
+
+  <div (click)="clickLogo()"><h1>OutGoing</h1></div>
+  
+
 </mat-toolbar>
 
 
@@ -12,6 +15,7 @@
       <a mat-list-item *ngFor="let nav of fillerNav" routerLink="{{nav.link}}">{{nav.title}}</a>
     </mat-nav-list>
   </mat-sidenav>
+
   <mat-sidenav-content>
     <router-outlet></router-outlet>
   </mat-sidenav-content>

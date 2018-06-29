@@ -9,8 +9,6 @@ export class RResolver implements Resolve<Route> {
   constructor(private routesService: RoutesService) { }
 
   resolve(route: ActivatedRouteSnapshot) {
-    this.routesService
-      .getRoute(route.paramMap.get('id')).subscribe(resp => console.log(resp));
     return this.routesService
       .getRoute(route.paramMap.get('id'));
   }
