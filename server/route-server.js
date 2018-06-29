@@ -117,8 +117,9 @@ app.get('/api/search', function (req, res) {
  * getContact(<contactId>) RESTful endpoint
  */
 app.get('/api/routes/:id', function (req, res) {
-  let contact = db.find(contact => contact.id == req.params.id);
-  contact ? res.json(singleResponse(contact)) : res.status(404).json({
+  console.log(req);
+  let route = db.find(route => route.id == req.params.id);
+  route ? res.json(singleResponse(route)) : res.status(404).json({
     error: 'contact not found'
   });
 });
