@@ -1,0 +1,32 @@
+<mat-card class="card-container">
+  <mat-card-title>
+    Create a new Route
+  </mat-card-title>
+  <mat-card-content>
+    <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <mat-form-field>
+        <input matInput placeholder="Name of the Route">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Town">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Country">
+      </mat-form-field>
+    </div>
+
+    <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+      <mat-form-field>
+        <input matInput placeholder="Distance">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Activity" [formControl]="activity" multiple>
+          <mat-option *ngFor="let activity of activityList" [value]="activity">{{activity}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="star-rating">
+        <span class="star-rating-title mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored">Level: </span> <mat-star-rating [rating]="rating" [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
