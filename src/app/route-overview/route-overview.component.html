@@ -1,52 +1,58 @@
 <mat-expansion-panel>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Searching for Tours
-      </mat-panel-title>
-      <mat-panel-description>
-        
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-  
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Name" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
-              </div>
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Location" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
-              </div>
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Perimeter" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      Searching for Tours
+    </mat-panel-title>
+    <mat-panel-description>
 
-              </div>
-            </div>
-      
-            <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Type" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
-              </div>
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Perimeter" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
-              </div>
-              <div fxFlex="33%">
-                  <mat-form-field color="accent" class="trm-search-container">
-                    <input placeholder="Reccomendations" matInput type="text" (input)="terms$.next($event.target.value)">
-                  </mat-form-field>
-              </div>
-            </div>
+    </mat-panel-description>
+  </mat-expansion-panel-header>
 
-    
-  
-  </mat-expansion-panel>
-  <trm-route-overview-content [routesArray$]="routes$"></trm-route-overview-content>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Name" matInput type="text" (input)="termsName$.next($event.target.value); fillFilter() ">
+      </mat-form-field>
+    </div>
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Location" matInput type="text" (input)="termsLocation$.next($event.target.value); 
+        fillFilter() ">
+      </mat-form-field>
+    </div>
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Perimeter" matInput type="text" (input)="termsPerimeter$.next($event.target.value); 
+        fillFilter() ">
+      </mat-form-field>
 
+    </div>
+  </div>
+
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Type" matInput type="text" (input)="termsType$.next($event.target.value); 
+        fillFilter() ">
+      </mat-form-field>
+    </div>
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Perimeter" matInput type="text" (input)="termsPerimeter$.next($event.target.value); 
+        fillFilter() ">
+      </mat-form-field>
+    </div>
+    <div fxFlex="33%">
+      <mat-form-field color="accent" class="trm-search-container">
+        <input placeholder="Reccomendations" matInput type="text" (input)="termsReccomendations$.next($event.target.value);
+        fillFilter() ">
+      </mat-form-field>
+    </div>
+  </div>
+
+
+
+</mat-expansion-panel>
+
+
+<trm-route-overview-content [routesArray$]="routes$"></trm-route-overview-content>
