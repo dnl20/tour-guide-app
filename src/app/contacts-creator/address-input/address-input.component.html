@@ -1,0 +1,15 @@
+<fieldset [formGroup]="addressForm" fxLayout="column">
+    <legend>Address</legend>
+    <mat-form-field fxFlex>
+      <input matInput placeholder="Street" (blur)="propagateTouched" formControlName="street">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input matInput placeholder="Zip" (blur)="propagateTouched" formControlName="zip">
+    </mat-form-field>
+    <mat-form-field fxFlex>
+      <input matInput placeholder="City" (blur)="propagateTouched" formControlName="city">
+    </mat-form-field>
+    <mat-select placeholder="Country" (blur)="propagateTouched" formControlName="country">
+      <mat-option *ngFor="let country of countries" [value]="country.name">{{ country.name }}</mat-option>
+    </mat-select>
+  </fieldset>

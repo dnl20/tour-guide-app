@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <mat-form-field color="accent" class="trm-search-container">
+    <input matInput type="text" (input)="terms$.next($event.target.value)">
+  </mat-form-field>
+  <mat-icon color="accent">search</mat-icon>
+</mat-toolbar>
+
+<mat-list>
+  <a mat-list-item
+    [routerLink]="['/contact', contact.id]"
+    *ngFor="let contact of contacts$ | async; trackBy:trackByContactId"
+    title="View {{contact.name}} details">
+
+    <img mat-list-avatar [src]="contact.image" alt="Picture of {{contact.name}}" class="circle">
+    <h3 mat-line>{{contact.name}}</h3>
+  </a>
+</mat-list>
+<a routerLink="/contact/new" mat-fab title="Add a new contact" class="trm-floating-button">
+  <mat-icon class="md-24">add</mat-icon>
+</a>
