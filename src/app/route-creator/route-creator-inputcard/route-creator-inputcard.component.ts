@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { StarRatingColor } from '../../star-rating/star-rating.component';
+import { RoutesService } from '../../routes.service';
+import { Router } from '@angular/router';
+import { Route } from '../../models/route';
 
 @Component({
   selector: 'trm-route-creator-inputcard',
@@ -20,7 +23,7 @@ export class RouteCreatorInputcardComponent implements OnInit {
   starColorW: StarRatingColor = StarRatingColor.warn;
   ratingElements = ['easy-going', 'exhausting', 'challenging', 'extreme', 'super extreme'];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private routesService: RoutesService, private router: Router) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -33,6 +36,7 @@ export class RouteCreatorInputcardComponent implements OnInit {
       difficulty: ['', [Validators.required]]
     });
   }
+
 
   onRatingChanged(rating) {
     this.rating = rating;
@@ -48,9 +52,7 @@ export class RouteCreatorInputcardComponent implements OnInit {
 
   }
 
-  save(newRoute: any) {
-    console.log(newRoute);
-    // this.contactsService.addContact(contact)
-    //   .subscribe(() => this.router.navigate(['/']));
+  save(newRoute: Route) {
+    this.routesService.addRoute(newRoute).subscribe(() => this.router.navigate(['']));
   }
 }
