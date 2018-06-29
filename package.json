@@ -39,6 +39,7 @@
     "@nguniversal/express-engine": "6.0.0",
     "@nguniversal/module-map-ngfactory-loader": "6.0.0",
     "@thoughtram/amc-demo-lib": "1.0.1",
+    "agm-direction": "^0.5.9",
     "core-js": "^2.4.1",
     "ngrx-store-freeze": "0.2.4",
     "redux": "3.6.0",
