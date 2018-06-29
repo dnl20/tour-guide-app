@@ -15,6 +15,7 @@ import {
   MatTabsModule,
   MatToolbarModule,
   MatProgressSpinnerModule,
+  MatExpansionModule
 } from '@angular/material';
 
 @NgModule({
@@ -32,7 +33,8 @@ import {
     MatNativeDateModule,
     MatTabsModule,
     MatToolbarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatExpansionModule
   ]
 })
 export class ContactsMaterialModule {}

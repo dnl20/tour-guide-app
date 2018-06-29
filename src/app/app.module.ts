@@ -31,6 +31,7 @@ import { RouteDashboardComponent } from './route-dashboard/route-dashboard.compo
 import { RouteOverviewComponent } from './route-overview/route-overview.component';
 import { RouteSearchComponent } from './route-overview/route-search/route-search.component';
 import { RouteOverviewContentComponent } from './route-overview/route-overview-content/route-overview-content.component';
+import { RoutesService } from './routes.service';
 
 
 @NgModule({
@@ -66,6 +67,7 @@ import { RouteOverviewContentComponent } from './route-overview/route-overview-c
   ],
   providers: [
     ContactsService,
+    RoutesService,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
     EventBusServiceService,
     Title,
