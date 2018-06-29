@@ -36,7 +36,7 @@ import { RouteCreatorInputcardComponent } from './route-creator/route-creator-in
 import { RouteCreatorMapComponent } from './route-creator/route-creator-map/route-creator-map.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RoutesService } from './routes.service';
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -71,7 +71,10 @@ import { RoutesService } from './routes.service';
     }),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAa74U6p6t1Zq2N8Ta4wMv5HIO9ZW63_9g'
+    })
   ],
   providers: [
     ContactsService,
