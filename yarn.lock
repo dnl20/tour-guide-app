@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@agm/core@^1.0.0-beta.3":
+  version "1.0.0-beta.3"
+  resolved "https://lht.app.lufthansa.com/artifactory/api/npm/npm-repos/@agm/core/-/core-1.0.0-beta.3.tgz?dl=https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.3.tgz#6ec7fd8629134c040f68663b14de3b4a60a8a011"
+
 "@angular-devkit/architect@0.6.7":
   version "0.6.7"
   resolved "https://registry.yarnpkg.com/@angular-devkit/architect/-/architect-0.6.7.tgz#ef1182dde3fc97ed20be7f5abe96cbb7d00c30ff"
@@ -598,6 +602,10 @@ agent-base@2:
   dependencies:
     extend "~3.0.0"
     semver "~5.0.1"
+
+agm-direction@^0.5.9:
+  version "0.5.9"
+  resolved "https://lht.app.lufthansa.com/artifactory/api/npm/npm-repos/agm-direction/-/agm-direction-0.5.9.tgz?dl=https://registry.yarnpkg.com/agm-direction/-/agm-direction-0.5.9.tgz#30717c487c5f343cb3a9cd44530c8feb17485a5c"
 
 ajv-keywords@^3.1.0:
   version "3.2.0"

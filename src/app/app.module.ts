@@ -38,7 +38,7 @@ import { RoutesService } from './routes.service';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RResolver } from './shared/routes.resolver';
 import { AgmCoreModule } from '@agm/core';
-import { AgmDirectionModule } from 'agm-direction'
+import { AgmDirectionModule } from 'agm-direction';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { AgmDirectionModule } from 'agm-direction'
     RouteCreatorInputcardComponent,
     RouteCreatorMapComponent,
     StarRatingComponent,
-    RouteDetailComponent
+   RouteDetailComponent
   ],
   imports: [
     BrowserModule,
