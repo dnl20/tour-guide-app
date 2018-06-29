@@ -37,7 +37,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RoutesService } from './routes.service';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RResolver } from './shared/routes.resolver';
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,10 @@ import { RResolver } from './shared/routes.resolver';
     }),
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAa74U6p6t1Zq2N8Ta4wMv5HIO9ZW63_9g'
+    })
   ],
   providers: [
     ContactsService,

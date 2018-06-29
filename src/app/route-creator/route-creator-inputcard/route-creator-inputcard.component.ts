@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { StarRatingColor } from '../../star-rating/star-rating.component';
+import { RoutesService } from '../../routes.service';
+import { Router } from '@angular/router';
+import { Route } from '../../models/route';
 
 @Component({
   selector: 'trm-route-creator-inputcard',
@@ -8,22 +11,48 @@ import { StarRatingColor } from '../../star-rating/star-rating.component';
   styleUrls: ['./route-creator-inputcard.component.css']
 })
 export class RouteCreatorInputcardComponent implements OnInit {
-  activity = new FormControl();
-  activityList: string[] = ['Hiking', 'Cycling', 'Running', 'Skating', 'Mountaineering', 'Tomato'];
+  type = new FormControl();
+  typeList: string[] = ['Hiking', 'Cycling', 'Running', 'Skating', 'Mountaineering'];
+  form: FormGroup;
 
   rating = 1;
   starCount = 5;
+  ratingtype = 'difficulity';
   starColor: StarRatingColor = StarRatingColor.accent;
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
+  ratingElements = ['easy-going', 'exhausting', 'challenging', 'extreme', 'super extreme'];
 
-  constructor() { }
+  constructor(private fb: FormBuilder, private routesService: RoutesService, private router: Router) { }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      //[initialValue, [syncValidator], [asyncValidator]]
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      country: ['', [Validators.required, Validators.minLength(3)]],
+      place: ['', [Validators.required, Validators.minLength(3)]],
+      distance: [null, [Validators.required]],
+      type: this.fb.array(['']),
+      difficulty: ['', [Validators.required]]
+    });
   }
+
 
   onRatingChanged(rating) {
     this.rating = rating;
+    const controlRating = this.form.get('difficulty');
+    controlRating.setValue(this.ratingElements[(rating - 1)]);
   }
 
+  changeType(a) {
+    const typeArray: FormArray = a.value;
+    const control = <FormArray>this.form.get('type');
+    control.removeAt(0);
+    control.push(new FormControl(typeArray));
+
+  }
+
+  save(newRoute: Route) {
+    this.routesService.addRoute(newRoute).subscribe(() => this.router.navigate(['']));
+  }
 }
