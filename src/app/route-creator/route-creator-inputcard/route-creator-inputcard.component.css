@@ -1,0 +1,19 @@
+.card-container {
+  margin: 15px;
+}
+
+.star-rating {
+  width: 100%;
+  margin-top: auto;
+  margin-left: 2px;
+  margin-bottom: auto;
+}
+
+.star-rating-title {
+  margin-right: 10px;
+  opacity: 0.75;
+}
+
+mat-star-rating {
+  vertical-align: 2px;
+}

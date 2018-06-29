@@ -31,6 +31,10 @@ import { RouteDashboardComponent } from './route-dashboard/route-dashboard.compo
 import { RouteOverviewComponent } from './route-overview/route-overview.component';
 import { RouteSearchComponent } from './route-overview/route-search/route-search.component';
 import { RouteOverviewContentComponent } from './route-overview/route-overview-content/route-overview-content.component';
+import { RouteCreatorComponent } from './route-creator/route-creator.component';
+import { RouteCreatorInputcardComponent } from './route-creator/route-creator-inputcard/route-creator-inputcard.component';
+import { RouteCreatorMapComponent } from './route-creator/route-creator-map/route-creator-map.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 import { RoutesService } from './routes.service';
 
 
@@ -51,7 +55,11 @@ import { RoutesService } from './routes.service';
     RouteDashboardComponent,
     RouteOverviewComponent,
     RouteSearchComponent,
-    RouteOverviewContentComponent
+    RouteOverviewContentComponent,
+    RouteCreatorComponent,
+    RouteCreatorInputcardComponent,
+    RouteCreatorMapComponent,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,

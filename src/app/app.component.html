@@ -9,7 +9,7 @@
 <mat-sidenav-container class="navigation-container">
   <mat-sidenav #navbar mode="side" opened class="navigation-sidenav">
     <mat-nav-list fxFlex>
-      <a mat-list-item *ngFor="let nav of fillerNav">{{nav}}</a>
+      <a mat-list-item *ngFor="let nav of fillerNav" routerLink="{{nav.link}}">{{nav.title}}</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -11,9 +11,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss']
 })
 export class ContactsAppComponent implements OnInit {
-  fillerNav = ['Overview of Routes', 'Create a new Route'];
+  fillerNav: Array<{title: string, link: string}> = [
+    { title: 'Overview of Routes', link: '/' },
+    { title: 'Create a new Route', link: '/creator'}
+  ];
   title = '';
-
   constructor(private eventBusService: EventBusServiceService, private titleService: Title, private router: Router) { }
   ngOnInit() {
     this.eventBusService.observe('appTitleChange')
@@ -21,12 +23,5 @@ export class ContactsAppComponent implements OnInit {
         this.title = title;
         this.titleService.setTitle(title);
       });
-
-    // const showLoading$ = this.router.events.pipe(filter(event => event instanceof NavigationStart), mapTo(true));
-    // const hideSpinner$ = this.router.events.pipe(filter(event => event instanceof NavigationEnd), mapTo(false));
-
-    // this.spinnerVisibility$ = merge(showLoading$, hideSpinner$);
-    // this.spinnerVisibility$.subscribe(val => this.spinner = val);
-
   }
 }
