@@ -10,10 +10,11 @@ import {
   MatListModule,
   MatSelectModule,
   MatSidenavModule,
+  MatNativeDateModule,
   MatRadioModule,
   MatTabsModule,
   MatToolbarModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 @NgModule({
@@ -28,6 +29,7 @@ import {
     MatRadioModule,
     MatSelectModule,
     MatSidenavModule,
+    MatNativeDateModule,
     MatTabsModule,
     MatToolbarModule,
     MatProgressSpinnerModule

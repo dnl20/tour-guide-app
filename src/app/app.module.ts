@@ -28,6 +28,7 @@ import { AddressInputComponent } from './contacts-creator/address-input/address-
 import { ContactsDashboardComponent } from './contacts-dashboard/contacts-dashboard.component';
 import { ContactResolver } from './shared/contacts.resolver';
 
+
 @NgModule({
   declarations: [
     ContactsAppComponent,
