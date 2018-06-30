@@ -9,3 +9,10 @@ export interface Route {
   rating?: number | number [];
   image?: string;
 }
+
+export interface GeoData {
+  latitude_dep: number;
+  longitude_dep: number;
+  latitude_arr: number;
+  longitude_arr: number;
+}
