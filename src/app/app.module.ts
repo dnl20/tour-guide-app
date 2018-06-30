@@ -85,7 +85,6 @@ import { API_KEY } from '../maps-api';
     ContactsService,
     RoutesService,
     { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' },
-    { provide: API_ENDPOINT, useValue: '' },
     EventBusServiceService,
     Title,
     {
