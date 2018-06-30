@@ -15,6 +15,13 @@ $ npx yarn install
 
 > You may also need to globally install the Angular-Cli:  `npm i -g @angular/cli`
 
+
+## Local Setup
+
+You have to set up the Google Map API in /src/google-map.ts like the following: 
+export const API_KEY = 'API_KEY';
+
+
 ## Web and App Servers
 
 To launch your web application, use a Terminal session with the command:
