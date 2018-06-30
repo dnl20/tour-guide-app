@@ -21,6 +21,11 @@ $ npx yarn install
 You have to set up the Google Map API in /src/google-map.ts like the following: 
 export const API_KEY = 'API_KEY';
 
+## Google-API
+Setup API like the folowing.
+Create a file /src/maps-api.ts.
+Put API-KEY on it like: export const API_KEY = 'YOUR_API_KEY';
+
 
 ## Web and App Servers
 
