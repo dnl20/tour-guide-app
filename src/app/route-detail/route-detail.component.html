@@ -8,6 +8,7 @@
         <dl>
 
           <dt>Country:</dt>
+          <img mat-list-avatar src="http://www.countryflags.io/{{getCountryCode(route.country)}}/flat/64.png" alt="Picture of {{route.name}}">
           <dd>{{ route.country || '-'}}</dd>
           <dt>Place:</dt>
           <dd>{{ route.place || '-'}}</dd>

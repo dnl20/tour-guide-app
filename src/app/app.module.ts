@@ -39,6 +39,7 @@ import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RResolver } from './shared/routes.resolver';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
+import { API_KEY } from '../maps-api';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,7 @@ import { AgmDirectionModule } from 'agm-direction';
     FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBZ5PRGq7-bDi2sBtA6ATkdylAV2OlU2Bs'
+      apiKey: (API_KEY || '')
     }),
     AgmDirectionModule
   ],
