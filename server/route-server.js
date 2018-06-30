@@ -85,7 +85,7 @@ let delayedRequest = false;
  */
 app.get('/api/search', function (req, res) {
   let text = req.query.text;
-  let country = req.query.country_dep;
+  let country =(req.query.country === null) ? '' : req.query.country;
   let perimeter = (req.query.perimeter === null) ? '' : req.query.perimeter;
   let recommendation = (req.query.recommendation === null) ? '' : req.query.recommendation;
   let type = (req.query.type === null) ? '' : req.query.type;
