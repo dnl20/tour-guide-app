@@ -5,15 +5,16 @@ import { RoutesService } from '../../routes.service';
 import { Router } from '@angular/router';
 import { Route, GeoData } from '../../models/route';
 import { GEO_DATA } from '../../data/geo-data';
-import { Subject } from 'rxjs';
-import { filter, map, combineLatest } from 'rxjs/operators';
+import { Subject, combineLatest } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+
 @Component({
   selector: 'trm-route-creator-inputcard',
   templateUrl: './route-creator-inputcard.component.html',
   styleUrls: ['./route-creator-inputcard.component.css']
 })
-export class RouteCreatorInputcardComponent implements OnInit, ControlValueAccessor {
-  
+export class RouteCreatorInputcardComponent implements OnInit {
+
   geo = GEO_DATA;
   countrys = [];
   place_deps = [];
@@ -24,6 +25,7 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
   type = new FormControl();
   typeList: string[] = ['Hiking', 'Cycling', 'Running', 'Skating', 'Mountaineering'];
   form: FormGroup;
+  distance = 0;
 
   countryDepName$ = new Subject<string>();
   countryArrName$ = new Subject<string>();
@@ -38,6 +40,11 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
   ratingElements = ['easy-going', 'exhausting', 'challenging', 'extreme', 'super extreme'];
+
+  public lat: number;
+  public lng: number;
+  public zoom = 14;
+  public dir = undefined;
 
   constructor(private fb: FormBuilder, private routesService: RoutesService, private router: Router) {
     this.geo.forEach(geoelement => {
@@ -57,12 +64,12 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
       place_dep: ['', [Validators.required, Validators.minLength(3)]],
       country_arr: ['', [Validators.required, Validators.minLength(3)]],
       place_arr: ['', [Validators.required, Validators.minLength(3)]],
-      distance: [null, [Validators.required]],
+      distance: '',
       coordinates: this.fb.group({
-        latitude_dep: '',
-        longitude_dep: '',
-        latitude_arr: '',
-        longitude_arr: ''
+        latitude_dep: ['', [Validators.required]],
+        longitude_dep: ['', [Validators.required]],
+        latitude_arr: ['', [Validators.required]],
+        longitude_arr: ['', [Validators.required]],
       }),
       type: this.fb.array(['']),
       difficulty: ['', [Validators.required]]
@@ -74,10 +81,10 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
 
     this.placeDepName$.subscribe(placeElement => {
       this.geo.filter(geoElement => geoElement.City === placeElement)
-      .map(filterGeo => {
-        this.form.get('coordinates').get('latitude_dep').setValue(filterGeo.Latitude);
-        this.form.get('coordinates').get('longitude_dep').setValue(filterGeo.Longitude);
-      });
+        .map(filterGeo => {
+          this.form.get('coordinates').get('latitude_dep').setValue(filterGeo.Latitude);
+          this.form.get('coordinates').get('longitude_dep').setValue(filterGeo.Longitude);
+        });
     });
 
     this.countryArrName$.subscribe(countryElement => {
@@ -91,12 +98,12 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
       });
     });
 
-    combineLatest(this.placeDepName$, this.placeArrName$, (placeDepName, placeArrName) => {
-      this.propagateChange(this.geo_data);
+    const scene$ = combineLatest(this.placeDepName$, this.placeArrName$, (placeDepName, placeArrName) => {
+    }).subscribe(() => {
+      this.getDirection(this.form.get('coordinates').value);
     });
 
   }
-
 
   onRatingChanged(rating) {
     this.rating = rating;
@@ -113,23 +120,24 @@ export class RouteCreatorInputcardComponent implements OnInit, ControlValueAcces
   }
 
   save(newRoute: Route) {
-    console.log(newRoute);
     this.routesService.addRoute(newRoute).subscribe(() => this.router.navigate(['']));
   }
 
-  propagateChange: Function = () => { };
-  propagateTouched: Function = () => { };
-
-  writeValue(coordinates: GeoData) {
-    this.form.setValue(coordinates);
+  getDirection(coordinates: GeoData) {
+    this.dir = {
+      origin: { lat: coordinates.latitude_dep, lng: coordinates.longitude_dep },
+      destination: { lat: coordinates.latitude_arr, lng: coordinates.longitude_arr }
+    };
+    this.distance = this.calculateDistance(coordinates);
   }
 
-  registerOnChange(fn) {
-    this.propagateChange = fn;
+  calculateDistance(coordinates: GeoData): string {
+    const p = Math.PI / 180;
+    const c = Math.cos;
+    const a = 0.5 - c((coordinates.latitude_dep - coordinates.latitude_arr) * p) / 2 + c(coordinates.latitude_arr * p) *
+      c((coordinates.latitude_dep) * p) * (1 - c(((coordinates.longitude_dep - coordinates.longitude_arr) * p))) / 2;
+    return  Math.round(12742 * Math.asin(Math.sqrt(a)));
   }
 
-  registerOnTouched(fn) {
-    this.propagateTouched = fn;
-  }
 
 }

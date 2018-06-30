@@ -48,7 +48,8 @@
 
       <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
         <mat-form-field>
-          <input matInput placeholder="Distance" formControlName="distance">
+          <mat-select matInput placeholder="Distance: {{distance}} km" formControlName="distance" disabled>
+          </mat-select>
         </mat-form-field>
         <mat-form-field>
 
@@ -64,9 +65,22 @@
         </div>
       </div>
       <mat-card-actions fxLayout fxLayoutAlign="center center">
-        <button mat-button type="submit">Save</button>
+        <button mat-button type="submit" [disabled]="!form.valid">Save</button>
         <a mat-button title="Cancel creating new contact" (click)="cancel(contact)" routerLink="/">Cancel</a>
       </mat-card-actions>
     </mat-card-content>
   </mat-card>
+
+  <mat-card class="card-container-map" >
+    <mat-card-content>
+
+      <agm-map [latitude]="lat" [longitude]="lng">
+        <agm-direction *ngIf="dir" [origin]="dir.origin" [destination]="dir.destination">
+        </agm-direction>
+      </agm-map>
+
+    </mat-card-content>
+  </mat-card>
+
 </form>
+<!-- <pre>{{form.value | json}}</pre> -->

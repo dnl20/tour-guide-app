@@ -8,14 +8,10 @@ import { GeoData } from '../../models/route';
   styleUrls: ['./route-creator-map.component.css']
 })
 export class RouteCreatorMapComponent implements OnInit, ControlValueAccessor {
-  coordinates: FormGroup;
+  form: FormGroup;
   propagateChange = Function;
   propagateTouched = Function;
-  // public lat: number = 24.799448;
-  // public lng: number = 120.979021;
 
-  // public origin: {};
-  // public destination: {};
   public lat: Number = 24.799448;
   public lng: Number = 120.979021;
   public zoom: Number = 14;
@@ -25,17 +21,22 @@ export class RouteCreatorMapComponent implements OnInit, ControlValueAccessor {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.coordinates = this.fb.group({
+    this.form = this.fb.group({
       latitude_dep: '',
       longitude_dep: '',
       latitude_arr: '',
       longitude_arr: ''
     });
+    this.form.valueChanges
+    .subscribe(value => {
+      this.propagateChange(value);
+      this.getDirection(value);
+    });
   }
 
 
-  getDirection() {
-    console.log('bla')
+  getDirection(coordinates: GeoData) {
+    console.log(coordinates);
     this.dir = {
       origin: { lat: 24.799448, lng: 120.979021 },
       destination: { lat: 24.799524, lng: 120.975017 }
@@ -43,7 +44,7 @@ export class RouteCreatorMapComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(coordinates: GeoData) {
-    this.coordinates.setValue(coordinates);
+    this.form.setValue(coordinates);
   }
 
   registerOnChange(fn) {

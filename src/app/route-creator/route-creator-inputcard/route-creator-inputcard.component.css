@@ -17,3 +17,17 @@
 mat-star-rating {
   vertical-align: 2px;
 }
+
+agm-map {
+  height: 100%;
+}
+
+.card-container-map {
+  margin: 15px;
+  padding: 0px !important;
+  height: 400px;
+}
+
+mat-card-content {
+  height: 100%;
+}
