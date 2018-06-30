@@ -25,7 +25,7 @@ export class RouteCreatorInputcardComponent implements OnInit {
   type = new FormControl();
   typeList: string[] = ['Hiking', 'Cycling', 'Running', 'Skating', 'Mountaineering'];
   form: FormGroup;
-  distance = 0;
+  distance: number = 0;
 
   countryDepName$ = new Subject<string>();
   countryArrName$ = new Subject<string>();
@@ -131,7 +131,7 @@ export class RouteCreatorInputcardComponent implements OnInit {
     this.distance = this.calculateDistance(coordinates);
   }
 
-  calculateDistance(coordinates: GeoData): string {
+  calculateDistance(coordinates: GeoData): number {
     const p = Math.PI / 180;
     const c = Math.cos;
     const a = 0.5 - c((coordinates.latitude_dep - coordinates.latitude_arr) * p) / 2 + c(coordinates.latitude_arr * p) *
