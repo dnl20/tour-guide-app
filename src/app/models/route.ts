@@ -1,13 +1,14 @@
 export interface Route {
   id: number | string;
   name?: string;
-  country?: string;
-  place?: string;
-  coordinates?: number | number[];
+  country_dep?: string;
+  place_dep?: string;
+  country_arr?: string;
+  place_arr?: string;
+  coordinates?: number | number[] | GeoData;
   type?: string | string[];
   difficulty?: string;
   rating?: number | number [];
-  image?: string;
 }
 
 export interface GeoData {

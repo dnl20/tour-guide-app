@@ -5,6 +5,7 @@ import { Observable, Subject, combineLatest } from 'rxjs';
 import { merge, concatAll, concat, withLatestFrom, distinct, combineAll, share } from 'rxjs/operators';
 import { Route } from '../models/route';
 
+
 @Component({
   selector: 'trm-route-overview',
   templateUrl: './route-overview.component.html',
@@ -42,9 +43,8 @@ export class RouteOverviewComponent implements OnInit {
     this.termsRating$.subscribe(rating => this.searchingTermsType = rating);
     this.termsType$.subscribe(type => this.searchingTermsType = type);
 
-
     this.routes$ = this.routeService.searchAll(this.searching$, 400).pipe(
-        merge(this.routeService.getRoutes()));
+      merge(this.routeService.getRoutes()));
 
     this.routes$.subscribe(routes => console.log('NEW ROUTES ', routes));
 

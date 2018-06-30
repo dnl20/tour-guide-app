@@ -4,6 +4,7 @@ import { RouteOverviewComponent } from './route-overview/route-overview.componen
 import { RouteCreatorComponent } from './route-creator/route-creator.component';
 import { RouteDetailComponent } from './route-detail/route-detail.component';
 import { RResolver } from './shared/routes.resolver';
+import { RouteEditComponent } from './route-edit/route-edit.component';
 
 export const APP_ROUTES: Routes = [
   {
@@ -13,6 +14,12 @@ export const APP_ROUTES: Routes = [
       { path: '', component: RouteOverviewComponent },
       { path: 'creator', component: RouteCreatorComponent },
       {
+        path: 'route/edit/:id', component: RouteEditComponent,
+        resolve: {
+          route: RResolver
+        }
+      },
+      {
         path: 'route/:id', component: RouteDetailComponent,
         resolve: {
           route: RResolver
@@ -20,8 +27,8 @@ export const APP_ROUTES: Routes = [
       }
     ]
   },
- // { path: 'about', loadChildren: './about/about.module#AboutModule' },
- { path: 'about', loadChildren: './aboutOnGoing/about.module#AboutModule' },
+  // { path: 'about', loadChildren: './about/about.module#AboutModule' },
+  { path: 'about', loadChildren: './aboutOnGoing/about.module#AboutModule' },
   { path: '**', redirectTo: '/' }
 ];
 

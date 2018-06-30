@@ -3,7 +3,7 @@
     <mat-card-header>Routes</mat-card-header>
     <a mat-list-item [routerLink]="['/route', route.id]" *ngFor="let route of routesArray$ | async; trackBy:trackByRouteId" title="View {{route.name}} details">
 
-      <img mat-list-avatar src="http://www.countryflags.io/{{getCountryCode(route.country)}}/flat/64.png" alt="Picture of {{route.name}}"
+      <img mat-list-avatar src="http://www.countryflags.io/{{getCountryCode(route.country_dep)}}/flat/64.png" alt="Picture of {{route.name}}"
         class="rectangle">
       <h3 mat-line>{{route.name}}</h3>
       <p matLine>

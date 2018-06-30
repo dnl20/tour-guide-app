@@ -66,8 +66,9 @@ export class RoutesService {
       .pipe(map(data => data.items));
   }
 
-  updateRoute(contact: Route): Observable<Route> {
-    return this.http.put<RouteResponse>(`${this.apiEndpoint}/routes/${contact.id}`, contact)
+  updateRoute(route: Route): Observable<Route> {
+    console.log(route);
+    return this.http.put<RouteResponse>(`${this.apiEndpoint}/routes`, route)
       .pipe(map(data => data.item));
   }
 

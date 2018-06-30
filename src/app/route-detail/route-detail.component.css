@@ -1,3 +1,11 @@
-.trm-route-detail{
-    margin: 15px;
+.trm-route-detail {
+  margin: 15px;
+}
+
+.map {
+  height: 500px;
+}
+
+agm-map {
+    height: 100%;
 }

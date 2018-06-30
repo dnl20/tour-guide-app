@@ -1,0 +1,72 @@
+<form [formGroup]="form" novalidate (ngSubmit)="update(form.value)">
+    <mat-card class="card-container">
+      <mat-card-title>
+        Edit Route
+      </mat-card-title>
+      <mat-card-content>
+        <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+          <mat-form-field>
+            <input matInput placeholder="Name of the Route" formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  
+          <mat-form-field>
+            <mat-select placeholder="Country of Depature" (selectionChange)="countryDepName$.next($event.value)" #countryDep formControlName="country_dep">
+              <mat-option *ngFor="let country_dep of countrys" [value]="country_dep">
+                {{country_dep}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-select placeholder="Town of Depature" (selectionChange)="placeDepName$.next($event.value)" formControlName="place_dep">
+              <mat-option *ngFor="let place_dep of place_deps" [value]="place_dep">
+                {{place_dep}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-select placeholder="Country of Arrival" (selectionChange)="countryArrName$.next($event.value)" #countryArr formControlName="country_arr">
+              <mat-option *ngFor="let country_arr of countrys" [value]="country_arr">
+                {{country_arr}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field>
+            <mat-select placeholder="Town of Arrival" formControlName="place_arr" (selectionChange)="placeArrName$.next($event.value)">
+              <mat-option *ngFor="let place_arr of place_arrs" [value]="place_arr">
+                {{place_arr}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+  
+        <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+          <mat-form-field>
+            <input matInput placeholder="Distance" formControlName="distance">
+          </mat-form-field>
+          <mat-form-field>
+  
+            <mat-select (selectionChange)="changeType($event)" placeholder="Activity" multiple formArrayName="type">
+              <mat-option *ngFor="let type of typeList" [value]="type">{{type}}</mat-option>
+            </mat-select>
+  
+          </mat-form-field>
+          <div class="star-rating">
+            <span class="star-rating-title mat-input-element mat-form-field-autofill-control cdk-text-field-autofill-monitored">Level: </span>
+            <mat-star-rating [ratingElements]="ratingElements" [rating]="rating" [ratingtype]="ratingtype" [starCount]="starCount" [color]="starColor"
+              (ratingUpdated)="onRatingChanged($event)"></mat-star-rating>
+          </div>
+        </div>
+        <mat-card-actions fxLayout fxLayoutAlign="center center">
+          <button mat-button type="submit">Update</button>
+          <a mat-button title="Cancel creating new contact" (click)="cancel(contact)" routerLink="/">Cancel</a>
+        </mat-card-actions>
+      </mat-card-content>
+    </mat-card>
+  </form>
+
+  <pre>{{ form.value | json}}</pre>

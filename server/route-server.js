@@ -85,7 +85,7 @@ let delayedRequest = false;
  */
 app.get('/api/search', function (req, res) {
   let text = req.query.text;
-  let country = req.query.country;
+  let country = req.query.country_dep;
   let perimeter = (req.query.perimeter === null) ? '' : req.query.perimeter;
   let recommendation = (req.query.recommendation === null) ? '' : req.query.recommendation;
   let type = (req.query.type === null) ? '' : req.query.type;
@@ -95,7 +95,7 @@ app.get('/api/search', function (req, res) {
   let matches = db.filter(route => {
     console.log(req.query);
     return ((route.name.toLowerCase().indexOf(text.toLowerCase()) > -1) &&
-      (route.country.toLowerCase().indexOf(country.toLowerCase()) > -1) &&
+      (route.country_dep.toLowerCase().indexOf(country.toLowerCase()) > -1) &&
       (route.type.toLowerCase().indexOf(type.toLowerCase()) > -1) &&
       (route.rating >= rating)
       // route.rating.toLowerCase().indexOf(recommendation.toLowerCase()) > -1 &&

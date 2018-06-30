@@ -40,6 +40,7 @@ import { RResolver } from './shared/routes.resolver';
 import { AgmCoreModule } from '@agm/core';
 import { AgmDirectionModule } from 'agm-direction';
 import { API_KEY } from '../maps-api';
+import { RouteEditComponent } from './route-edit/route-edit.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { API_KEY } from '../maps-api';
     RouteCreatorInputcardComponent,
     RouteCreatorMapComponent,
     StarRatingComponent,
-   RouteDetailComponent
+   RouteDetailComponent,
+   RouteEditComponent
   ],
   imports: [
     BrowserModule,
