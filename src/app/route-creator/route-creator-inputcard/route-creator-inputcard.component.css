@@ -31,3 +31,7 @@ agm-map {
 mat-card-content {
   height: 100%;
 }
+
+.distance .mat-select-arrow-wrapper{
+  display: none;
+}

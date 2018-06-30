@@ -10,7 +10,6 @@
         </mat-form-field>
       </div>
       <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-
         <mat-form-field>
           <mat-select placeholder="Country of Depature" (selectionChange)="countryDepName$.next($event.value)" #countryDep formControlName="country_dep">
             <mat-option *ngFor="let country_dep of countrys" [value]="country_dep">
@@ -48,7 +47,7 @@
 
       <div class="container" fxLayout="row" fxLayout.sm="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
         <mat-form-field>
-          <mat-select matInput placeholder="Distance: {{distance}} km" formControlName="distance" disabled>
+          <mat-select class="distance" matInput placeholder="Distance: {{distance}} km" formControlName="distance" disabled>
           </mat-select>
         </mat-form-field>
         <mat-form-field>
